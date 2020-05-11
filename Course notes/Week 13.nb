@@ -1,0 +1,270 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9155,        262]
+NotebookOptionsPosition[      8194,        237]
+NotebookOutlinePosition[      8539,        252]
+CellTagsIndexPosition[      8496,        249]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Week 13:", "Title",
+ CellChangeTimes->{{3.7692440013971996`*^9, 
+  3.7692440121780915`*^9}},ExpressionUUID->"6172240a-14c8-4cff-9a5d-\
+54585a28b9ca"],
+
+Cell[CellGroupData[{
+
+Cell["Tuesday 11/6:", "Chapter",
+ CellChangeTimes->{{3.7692440188029027`*^9, 
+  3.769244023396505*^9}},ExpressionUUID->"80052518-dca6-4124-98de-\
+cec6641d74bf"],
+
+Cell[CellGroupData[{
+
+Cell[" Two Particles (2 level stage):", "Subchapter",
+ CellChangeTimes->{{3.769246109360819*^9, 
+  3.7692461369694333`*^9}},ExpressionUUID->"79a58abc-e939-42b4-bebd-\
+a446e8133a9d"],
+
+Cell["\<\
+We have a system built from \[UpArrow]\[DownArrow] and \[DownArrow]\[UpArrow] \
+- two particle system. we wish to separate between the particles and get a \
+function of \[UpArrow] and \[DownArrow] separately.
+\[Rho]A = trB \[Rho]AB = \[LeftAngleBracket]\[UpArrow]B\[LeftBracketingBar]\
+\[Rho]AB\[LeftBracketingBar]\[UpArrow]B\[RightAngleBracket] + \
+\[LeftAngleBracket]\[DownArrow]B\[LeftBracketingBar]\[Rho]AB\
+\[LeftBracketingBar]\[DownArrow]B\[RightAngleBracket] = tr ( \[Rho]AB( \
+\[VerticalSeparator]\[UpArrow]B\[RightAngleBracket]\[LeftAngleBracket]\
+\[UpArrow]B\[VerticalSeparator] +\[VerticalSeparator]\[DownArrow]B\
+\[RightAngleBracket]\[LeftAngleBracket]\[DownArrow]B\[VerticalSeparator]  ) ) \
+=tr ( \[Rho]AB \[ScriptCapitalH]B )
+\[Rho]A11 = \[Rho]A\[UpArrow]\[UpArrow] = tr (\[Rho]AB( \[VerticalSeparator]\
+\[UpArrow]A\[RightAngleBracket]\[LeftAngleBracket]\[UpArrow]A\
+\[VerticalSeparator] \[CircleTimes] 1B)
+\[Rho]A22 = \[Rho]A\[DownArrow]\[DownArrow] = tr (\[Rho]AB( \
+\[VerticalSeparator]\[DownArrow]A\[RightAngleBracket]\[LeftAngleBracket]\
+\[UpArrow]A\[VerticalSeparator] \[CircleTimes] 1B)
+\[Rho]A12 = \[Rho]A21 = \[Rho]A\[UpArrow]\[DownArrow] = tr (\[Rho]AB( \
+\[VerticalSeparator]\[UpArrow]A\[RightAngleBracket]\[LeftAngleBracket]\
+\[DownArrow]A\[VerticalSeparator] \[CircleTimes] 1B)
+\
+\>", "Text",
+ CellChangeTimes->{{3.7692440355992327`*^9, 3.769244051317505*^9}, {
+  3.769244161626522*^9, 3.769244470804303*^9}, {3.7692445069281635`*^9, 
+  3.7692445693495183`*^9}, {3.7692446039274316`*^9, 3.7692446130055017`*^9}, {
+  3.7692446628802013`*^9, 3.769244666302055*^9}, {3.769245637169574*^9, 
+  3.769245666778285*^9}},ExpressionUUID->"8049af39-eb91-4bb8-b5ce-\
+a67a8fd8d27a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DirectProduct", "[", 
+   RowBox[{"M1_", ",", "M2_"}], "]"}], ":=", 
+  RowBox[{"ArrayFlatten", "[", 
+   RowBox[{"Outer", "[", 
+    RowBox[{"Times", ",", "M1", ",", "M2"}], "]"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Kron", "[", 
+   RowBox[{"V1_", ",", "V2_"}], "]"}], ":=", 
+  RowBox[{"Flatten", "[", 
+   RowBox[{"Outer", "[", 
+    RowBox[{"Times", ",", "V1", ",", "V2"}], "]"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"KetBra", "[", 
+   RowBox[{"V1_", ",", "V2_"}], "]"}], ":=", 
+  RowBox[{"Outer", "[", 
+   RowBox[{"Times", ",", "V1", ",", 
+    RowBox[{"Conjugate", "[", "V2", "]"}]}], "]"}]}]}], "Input",ExpressionUUID\
+->"8c9fb55d-70f0-4319-9dc9-22d849679671"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"R", "=", "100"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Delta]1", "=", 
+   RowBox[{
+    RowBox[{"R", " ", "t"}], "+", "\[Omega]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ham1", "=", 
+   RowBox[{"ham", "/.", 
+    RowBox[{"\[Delta]", "\[Rule]", " ", "\[Delta]1"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "ham", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Vec", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"downdown", "[", "t", "]"}], ",", 
+     RowBox[{"downup", "[", "t", "]"}], ",", 
+     RowBox[{"updown", "[", "t", "]"}], ",", 
+     RowBox[{"upup", "[", "t", "]"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eqs", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"ham1", ".", "Vec"}], ")"}], "[", 
+       RowBox[{"[", "k", "]"}], "]"}], "\[Equal]", 
+      RowBox[{"I", " ", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         RowBox[{"Vec", "[", 
+          RowBox[{"[", "k", "]"}], "]"}], ",", "t"}], "]"}]}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "1", ",", "4"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"initial", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"downdown", "[", 
+       RowBox[{"-", 
+        FractionBox["5", "R"]}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"downup", "[", 
+       RowBox[{"-", 
+        FractionBox["5", "R"]}], "]"}], "\[Equal]", "1"}], ",", 
+     RowBox[{
+      RowBox[{"updown", "[", 
+       RowBox[{"-", 
+        FractionBox["5", "R"]}], "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"upup", "[", 
+       RowBox[{"-", 
+        FractionBox["5", "R"]}], "]"}], "\[Equal]", "0"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sol", "=", 
+   RowBox[{"NDSolve", "[", 
+    RowBox[{
+     RowBox[{"Join", "[", 
+      RowBox[{"eqs", ",", "initial"}], "]"}], ",", "Vec", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", 
+       RowBox[{"-", 
+        FractionBox["5", "R"]}], ",", 
+       FractionBox["5", "R"]}], "}"}], ",", 
+     RowBox[{"MaxSteps", "\[Rule]", 
+      RowBox[{"10", "^", "7"}]}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.769244981689528*^9, 3.7692449826270137`*^9}, {
+   3.769245055704155*^9, 3.7692451185470233`*^9}, 
+   3.769245176295914*^9},ExpressionUUID->"e2ed1a42-d487-4259-9ef1-\
+319f145da187"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"\[Rho]AB", "=", 
+   RowBox[{"KetBra", "[", 
+    RowBox[{"Vec", ",", "Vec"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mat11", "=", 
+   RowBox[{"DirectProduct", "[", 
+    RowBox[{
+     RowBox[{"KetBra", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"IdentityMatrix", "[", "2", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mat22", "=", 
+   RowBox[{"DirectProduct", "[", 
+    RowBox[{
+     RowBox[{"KetBra", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], "]"}], ",", 
+     RowBox[{"IdentityMatrix", "[", "2", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"mat12", "=", 
+   RowBox[{"DirectProduct", "[", 
+    RowBox[{
+     RowBox[{"KetBra", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}]}], "]"}], ",", 
+     RowBox[{"IdentityMatrix", "[", "2", "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]11", "=", 
+   RowBox[{"Tr", "[", 
+    RowBox[{"\[Rho]AB", ".", "mat11"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"\[Rho]22", "=", 
+   RowBox[{"Tr", "[", 
+    RowBox[{"\[Rho]AB", ".", "mat22"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Rho]12", "=", 
+    RowBox[{"Tr", "[", 
+     RowBox[{"\[Rho]AB", ".", "mat12"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.769244147095724*^9, 3.769244153079933*^9}, {
+   3.7692446906769238`*^9, 3.7692447278485518`*^9}, {3.769245004939211*^9, 
+   3.7692450152671804`*^9}, 3.7692452143264627`*^9, 3.7692456861215997`*^9, {
+   3.769245829711788*^9, 3.7692458933976765`*^9}, {3.769245970817589*^9, 
+   3.769246106407772*^9}},ExpressionUUID->"fd546b88-c8d9-451d-8e05-\
+96aea3e002b0"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{838, 958},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 155, 3, 96, "Title",ExpressionUUID->"6172240a-14c8-4cff-9a5d-54585a28b9ca"],
+Cell[CellGroupData[{
+Cell[760, 29, 160, 3, 67, "Chapter",ExpressionUUID->"80052518-dca6-4124-98de-cec6641d74bf"],
+Cell[CellGroupData[{
+Cell[945, 36, 181, 3, 64, "Subchapter",ExpressionUUID->"79a58abc-e939-42b4-bebd-a446e8133a9d"],
+Cell[1129, 41, 1707, 28, 166, "Text",ExpressionUUID->"8049af39-eb91-4bb8-b5ce-a67a8fd8d27a"],
+Cell[2839, 71, 738, 21, 67, "Input",ExpressionUUID->"8c9fb55d-70f0-4319-9dc9-22d849679671"],
+Cell[3580, 94, 2479, 76, 212, "Input",ExpressionUUID->"e2ed1a42-d487-4259-9ef1-319f145da187"],
+Cell[6062, 172, 2092, 60, 181, "Input",ExpressionUUID->"fd546b88-c8d9-451d-8e05-96aea3e002b0"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
