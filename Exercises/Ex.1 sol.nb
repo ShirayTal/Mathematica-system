@@ -1,0 +1,287 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9251,        277]
+NotebookOptionsPosition[      8411,        243]
+NotebookOutlinePosition[      8759,        258]
+CellTagsIndexPosition[      8716,        255]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Ex. 1 -  Shira Tal", "Title",
+ CellChangeTimes->{{3.76286317066584*^9, 3.762863195555455*^9}, {
+  3.762863236972855*^9, 3.762863268713386*^9}}],
+
+Cell["\<\
+I  added the analytical solution as well, in order to show that they turned \
+out identical.
+
+ID: 312491160\
+\>", "Text",
+ CellChangeTimes->{{3.7628631999595814`*^9, 3.7628632342409153`*^9}, {
+  3.7628632804317007`*^9, 3.762863288608507*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Solving analytically the mathematical pendulum:", "Subchapter",
+ CellChangeTimes->{{3.762596471817696*^9, 3.7625964918268337`*^9}, 
+   3.7625969194254775`*^9, 3.7628631016678114`*^9},
+ ExpressionUUID -> "db661104-e546-4c17-acbb-a7f49ca9aff0"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"eq", "=", 
+   RowBox[{"DSolve", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"\[Phi]", "''"}], "[", "t", "]"}], "==", 
+      RowBox[{
+       RowBox[{"-", 
+        SuperscriptBox["\[Omega]", "2"]}], 
+       RowBox[{"Sin", "[", 
+        RowBox[{"\[Phi]", "[", "t", "]"}], "]"}]}]}], ",", 
+     RowBox[{"\[Phi]", "[", "t", "]"}], ",", "t"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eq1", "=", 
+   RowBox[{
+    RowBox[{"eq", "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "/.", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"C", "[", "1", "]"}], "\[Rule]", " ", "1"}], " ", ",", " ", 
+      RowBox[{
+       RowBox[{"C", "[", "2", "]"}], "\[Rule]", " ", "1"}], ",", " ", 
+      RowBox[{"\[Omega]", "\[Rule]", " ", "1"}]}], "}"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.762595128290187*^9, 3.7625952435373173`*^9}, {
+   3.762595318023562*^9, 3.7625955274431047`*^9}, {3.7625958589770517`*^9, 
+   3.7625958636715593`*^9}, {3.76259591037856*^9, 3.7625959177270355`*^9}, 
+   3.762844220746913*^9, 3.7628442655357037`*^9},
+ ExpressionUUID -> "4987febe-4523-414e-980d-bc336a302f23"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"s1", "=", 
+  RowBox[{
+   RowBox[{"Normal", "[", 
+    RowBox[{"N", "[", 
+     RowBox[{"Series", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", "2"}], " ", 
+        RowBox[{"JacobiAmplitude", "[", 
+         RowBox[{
+          RowBox[{
+           FractionBox["1", "2"], " ", 
+           SqrtBox["3"], " ", 
+           SqrtBox[
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"1", "+", "t"}], ")"}], "2"]]}], ",", 
+          FractionBox["4", "3"]}], "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "4"}], "}"}]}], "]"}], "]"}], "]"}], "//",
+    "Chop"}]}]], "Input",
+ CellChangeTimes->{{3.762595545688591*^9, 3.762595595321816*^9}, {
+  3.76259572956946*^9, 3.7625957749599133`*^9}, {3.7625959407990875`*^9, 
+  3.7625959614317837`*^9}, {3.7625959931532393`*^9, 3.7625960136880074`*^9}, {
+  3.762596105080533*^9, 3.7625961125197487`*^9}, {3.762596159455871*^9, 
+  3.762596160794469*^9}},
+ ExpressionUUID -> "648e0afd-73c6-4965-a753-405c75bcb1c8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "1.4894779963052027`"}], "-", 
+  RowBox[{"1.0781732126374184`", " ", "t"}], "+", 
+  RowBox[{"0.4983477430686488`", " ", 
+   SuperscriptBox["t", "2"]}], "+", 
+  RowBox[{"0.014596441608322398`", " ", 
+   SuperscriptBox["t", "3"]}], "-", 
+  RowBox[{"0.05164901818067075`", " ", 
+   SuperscriptBox["t", "4"]}]}]], "Output",
+ CellChangeTimes->{{3.7625957653833604`*^9, 3.762595776422271*^9}, {
+   3.762595998641014*^9, 3.7625960143130045`*^9}, 3.7625961132541018`*^9, 
+   3.762596161481964*^9},
+ ExpressionUUID -> "75b94362-f8ad-4980-a543-c96e35871ef7"]
+}, Open  ]],
+
+Cell["\<\
+Instead of  //Chop one can use the function - ComplexExpand[Re[s1]]
+N[]  transform Analytic expressions like sin or the KacobiAmplitude into \
+numbers - like the one I got in the end.\
+\>", "Text",
+ CellChangeTimes->{{3.7625962547867656`*^9, 3.762596288637765*^9}, {
+   3.762596346489769*^9, 3.7625964673393836`*^9}, 3.762842711285432*^9},
+ ExpressionUUID -> "193fd941-07f7-43e1-b933-03c2f63ebdff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Solving numerically the mathematical pendulum:", "Subchapter",
+ CellChangeTimes->{{3.7625965003390903`*^9, 3.7625965106926956`*^9}, 
+   3.76259692160037*^9},
+ ExpressionUUID -> "d4810738-fcec-443d-9028-07be2e9bd26b"],
+
+Cell["\<\
+Now I write \[Phi] as x, I will take the same initial conditions as for the \
+analytical solution - x[0]=-1.48948 and x\[CloseCurlyQuote][0]=-1.07817 and \
+\[Omega]=1.\
+\>", "Text",
+ CellChangeTimes->{{3.762596687704297*^9, 3.7625967033105288`*^9}, {
+  3.7628444307979946`*^9, 3.7628444905754256`*^9}, {3.762844584842391*^9, 
+  3.762844605192786*^9}, {3.7628450942899923`*^9, 3.762845099120387*^9}, {
+  3.7628628745515957`*^9, 3.7628629306454334`*^9}},
+ ExpressionUUID -> "2fc87fc9-1893-4000-9448-d1e92f8b7838"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"x0", "+", 
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"a", "[", "i", "]"}], " ", 
+       SuperscriptBox["t", "i"]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "4"}], "}"}]}], "]"}], "+", 
+    RowBox[{
+     RowBox[{"O", "[", "t", "]"}], "^", "5"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "2"}], "}"}]}], "]"}], "+", 
+    RowBox[{
+     SuperscriptBox["\[Omega]", "2"], 
+     RowBox[{"Sin", "[", "x", "]"}]}]}], "\[Equal]", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"LogicalExpand", "[", "%", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"sol", "=", 
+   RowBox[{
+    RowBox[{"Solve", "[", "%", "]"}], "/.", 
+    RowBox[{"\[Omega]", "\[Rule]", " ", "1"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"res1", "=", 
+   RowBox[{"x", "/.", 
+    RowBox[{"sol", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"a", "[", "1", "]"}], "=", 
+   RowBox[{"-", "1.07817"}]}], ";", " ", 
+  RowBox[{"x0", "=", 
+   RowBox[{"-", "1.48948"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"N", "[", "res1", "]"}], "//", 
+  "Chop"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBWIQfSLbOmwqxxvHe3XtkSBaoYw3HkSv4jDLAdFGc7YX
+g2jV/lOlINpMT6cWRLNLHm4C0ctDf8Xxcr5xXHBDLR5E2359lwSind4Gp4Ho
+rh617SA6KcB+J4i+5iC8H8z/uO0AiG5aJXEPRAu7LHwEooNm8b4B0Qmf3/4H
+0d7CW2T4QHwhOQUQ3bDuqCaI3qI8RwtEZ6nqG4FoTdMZ9iB6Zk1gDlhePjwf
+RDfz1FSA6I1WhY0gepXHtVYQ/dvepQ1EVwlsXAqiDwQarQDRXU1PtoHoS3U3
+d4Jo2/uPg8WBtIj4JzCt6HIhCkRz8fbGgmiPTwuzQXSAP3seiAYAxayH+A==
+
+  "],
+ ExpressionUUID -> "0760e0fb-99d7-4a53-a3b1-57001ed9316a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"-", "1.48948`"}], "-", 
+   RowBox[{"1.07817`", " ", "t"}], "+", 
+   RowBox[{"0.4983478244464486`", " ", 
+    SuperscriptBox["t", "2"]}], "+", 
+   RowBox[{"0.014596039251079156`", " ", 
+    SuperscriptBox["t", "3"]}], "-", 
+   RowBox[{"0.051648655984186054`", " ", 
+    SuperscriptBox["t", "4"]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", "t", "]"}], "5"],
+    SeriesData[$CellContext`t, 0, {}, 0, 5, 1],
+    Editable->False]}],
+  SeriesData[$CellContext`t, 0, {-1.48948, -1.07817, 0.4983478244464486, 
+   0.014596039251079156`, -0.051648655984186054`}, 0, 5, 1],
+  Editable->False]], "Output",
+ CellChangeTimes->{{3.7628441443336525`*^9, 3.7628441580944333`*^9}, {
+   3.762844527626725*^9, 3.76284454062295*^9}, 3.762844623351673*^9, {
+   3.7628446707012825`*^9, 3.7628446841488295`*^9}, {3.7628449786568794`*^9, 
+   3.762844994261955*^9}, {3.7628627632355804`*^9, 3.7628627930647545`*^9}, 
+   3.762862830001994*^9, {3.7628629614933095`*^9, 3.7628629880171366`*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Which is The same as we got when we solved the equation analytically.\
+\>", "Text",
+ CellChangeTimes->{{3.7628630085137424`*^9, 3.762863042976153*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1418, 717},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 149, 2, 101, "Title"],
+Cell[732, 26, 252, 7, 68, "Text"],
+Cell[CellGroupData[{
+Cell[1009, 37, 248, 3, 67, "Subchapter"],
+Cell[1260, 42, 1172, 31, 52, "Input"],
+Cell[CellGroupData[{
+Cell[2457, 77, 1028, 27, 48, "Input"],
+Cell[3488, 106, 587, 13, 30, "Output"]
+}, Open  ]],
+Cell[4090, 122, 408, 7, 49, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4535, 134, 222, 3, 67, "Subchapter"],
+Cell[4760, 139, 521, 9, 30, "Text"],
+Cell[CellGroupData[{
+Cell[5306, 152, 1845, 56, 166, "Input"],
+Cell[7154, 210, 1053, 23, 30, "Output"]
+}, Open  ]],
+Cell[8222, 236, 161, 3, 30, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
